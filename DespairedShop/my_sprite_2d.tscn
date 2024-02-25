@@ -4,6 +4,6 @@
 [ext_resource type="Script" path="res://scripts/MySprite2D.cs" id="2_ea3vl"]
 
 [node name="Sprite2D" type="Sprite2D"]
-position = Vector2(563, 318)
+position = Vector2(579, 323)
 texture = ExtResource("1_cifbr")
 script = ExtResource("2_ea3vl")
