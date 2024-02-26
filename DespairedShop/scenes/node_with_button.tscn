@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://qgqayrh38lpt"]
+
+[ext_resource type="Script" path="res://scripts/NodeWithButton.cs" id="1_ekfrv"]
+[ext_resource type="PackedScene" uid="uid://s27k737q5llh" path="res://scenes/my_sprite_2d.tscn" id="1_id4b8"]
+
+[node name="node_with_button" type="Node2D"]
+script = ExtResource("1_ekfrv")
+
+[node name="MySprite2D" parent="." instance=ExtResource("1_id4b8")]
+position = Vector2(539, 247)
+
+[node name="Timer" type="Timer" parent="MySprite2D"]
+autostart = true
+
+[node name="Button" type="Button" parent="."]
+anchors_preset = -1
+anchor_left = -3.812
+anchor_top = -0.266
+anchor_right = -3.812
+anchor_bottom = -0.266
+offset_left = 49.0
+offset_top = 26.0
+offset_right = 244.0
+offset_bottom = 106.0
+text = "Toggle Motion"
+
+[connection signal="pressed" from="Button" to="MySprite2D" method="OnButtonPressed"]
