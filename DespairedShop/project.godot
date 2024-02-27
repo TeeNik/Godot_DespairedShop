@@ -15,6 +15,16 @@ run/main_scene="res://scenes/node_with_button.tscn"
 config/features=PackedStringArray("4.2", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
+[display]
+
+window/stretch/mode="canvas_items"
+
 [dotnet]
 
 project/assembly_name="DespairedShop"
+
+[file_customization]
+
+folder_colors={
+"res://scenes/": "orange"
+}
