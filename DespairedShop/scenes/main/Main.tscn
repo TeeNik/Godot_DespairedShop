@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://by7qe7fkcu5gh"]
+[gd_scene load_steps=6 format=3 uid="uid://by7qe7fkcu5gh"]
 
 [ext_resource type="Script" path="res://scenes/main/Main.cs" id="1_s5iev"]
 [ext_resource type="PackedScene" uid="uid://cngvd13k3qpvr" path="res://scenes/enemy/Enemy.tscn" id="2_8kfk2"]
 [ext_resource type="PackedScene" uid="uid://d4f02tt7s1lxk" path="res://scenes/player/Player.tscn" id="3_s6736"]
+[ext_resource type="PackedScene" uid="uid://57b72ehghiiw" path="res://scenes/hud/hud.tscn" id="4_m6gp3"]
 
 [sub_resource type="Curve2D" id="Curve2D_le4qb"]
 _data = {
@@ -32,3 +33,5 @@ position = Vector2(576, 324)
 curve = SubResource("Curve2D_le4qb")
 
 [node name="EnemySpawnLocation" type="PathFollow2D" parent="EnemyPath"]
+
+[node name="HUD" parent="." instance=ExtResource("4_m6gp3")]

@@ -20,6 +20,8 @@ public partial class Player : Area2D
 		
 		_animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		_collisionShape2D = GetNode<CollisionShape2D>("CollisionShape2D");
+		
+		Hide();
 	}
 
 	public void Start(Vector2 position)

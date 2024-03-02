@@ -13,6 +13,7 @@ public partial class Main : Node
 	private Timer _scoreTimer;
 	private Timer _startTimer;
 	private Marker2D _startPosition;
+	private HUD _hud;
 	
 	public override void _Ready()
 	{
@@ -23,12 +24,12 @@ public partial class Main : Node
 		_scoreTimer = GetNode<Timer>("ScoreTimer");
 		_startTimer = GetNode<Timer>("StartTimer");
 		_startPosition = GetNode<Marker2D>("StartPosition");
+		_hud = GetNode<HUD>("HUD");
 		
 		_scoreTimer.Timeout += OnScoreTimerTimeout;
 		_startTimer.Timeout += OnStartTimerTimeout;
 		_enemyTimer.Timeout += OnEnemyTimerTimeout;
-		
-		NewGame();
+		_hud.StartGame += NewGame;
 	}
 
 	private void OnEnemyTimerTimeout()
@@ -60,22 +61,24 @@ public partial class Main : Node
 	private void OnScoreTimerTimeout()
 	{
 		++_score;
+		_hud.UpdateScore(_score);
 	}
 
-	private void GameOver()
-	{
-		_enemyTimer.Stop();
-		_scoreTimer.Stop();
-	}
-
-	public void NewGame()
+	private void NewGame()
 	{
 		_score = 0;
 		_player.Start(_startPosition.Position);
 		_startTimer.Start();
+		
+		_hud.UpdateScore(_score);
+		_hud.ShowMessage("Get Ready!");
 	}
-
-	public override void _Process(double delta)
+	
+	private void GameOver()
 	{
+		_enemyTimer.Stop();
+		_scoreTimer.Stop();
+		
+		_hud.ShowGameOver();
 	}
 }
