@@ -72,6 +72,8 @@ public partial class Main : Node
 		
 		_hud.UpdateScore(_score);
 		_hud.ShowMessage("Get Ready!");
+		
+		GetTree().CallGroup("Enemies", Node.MethodName.QueueFree);
 	}
 	
 	private void GameOver()

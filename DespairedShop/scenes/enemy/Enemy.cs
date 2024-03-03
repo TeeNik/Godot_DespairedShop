@@ -8,7 +8,7 @@ public partial class Enemy : RigidBody2D
 		string[] mobTypes = animatedSprite2D.SpriteFrames.GetAnimationNames();
 		animatedSprite2D.Play(mobTypes[GD.Randi() % mobTypes.Length]);
 
-		var VisibleOnScreenNotifier2D = GetNode<VisibleOnScreenNotifier2D>("VisibleOnScreenNotifier2D ");
+		var VisibleOnScreenNotifier2D = GetNode<VisibleOnScreenNotifier2D>("VisibleOnScreenNotifier2D");
 		VisibleOnScreenNotifier2D.ScreenExited += OnScreenExited;
 	}
 

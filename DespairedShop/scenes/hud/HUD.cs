@@ -13,7 +13,7 @@ public partial class HUD : CanvasLayer
 	
 	public override void _Ready()
 	{
-		_message = GetNode<Label>("Message");
+		_message = GetNode<Label>("MessageLabel");
 		_messageTimer = GetNode<Timer>("MessageTimer");
 		_startButton = GetNode<Button>("StartButton");
 		_scoreLabel = GetNode<Label>("ScoreLabel");
