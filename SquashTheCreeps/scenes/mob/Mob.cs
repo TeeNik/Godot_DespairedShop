@@ -2,6 +2,9 @@ using Godot;
 
 public partial class Mob : CharacterBody3D
 {
+    [Signal]
+    public delegate void SquashedEventHandler();
+    
     [Export] 
     public int MinSpeed { get; set; } = 10;
     [Export] 
@@ -33,5 +36,11 @@ public partial class Mob : CharacterBody3D
     public override void _PhysicsProcess(double delta)
     {
         MoveAndSlide();
+    }
+
+    public void Squash()
+    {
+        EmitSignal(SignalName.Squashed);
+        QueueFree();
     }
 }

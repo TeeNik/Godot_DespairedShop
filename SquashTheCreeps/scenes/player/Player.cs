@@ -3,11 +3,10 @@ using System;
 
 public partial class Player : CharacterBody3D
 {
-    [Export] 
-    public int Speed { get; set; } = 14;
-
-    [Export] 
-    public int FallAcceleration { get; set; } = 75;
+    [Export] public int Speed { get; set; } = 14;
+    [Export] public int FallAcceleration { get; set; } = 75;
+    [Export] public int JumpImpulse { get; set; } = 20;
+    [Export] public int BounceImpulse { get; set; } = 16;
     
     private Vector3 _targetVelocity = Vector3.Zero;
 
@@ -52,8 +51,26 @@ public partial class Player : CharacterBody3D
         {
             _targetVelocity.Y -= FallAcceleration * (float)delta;
         }
+        if (IsOnFloor() && Input.IsActionPressed("jump"))
+        {
+            _targetVelocity.Y = JumpImpulse;
+        }
 
         Velocity = _targetVelocity;
         MoveAndSlide();
+
+        for (int i = 0; i < GetSlideCollisionCount(); ++i)
+        {
+            KinematicCollision3D collision = GetSlideCollision(i);
+            if (collision.GetCollider() is Mob mob)
+            {
+                if (Vector3.Up.Dot(collision.GetNormal()) > 0.1f)
+                {
+                    mob.Squash();
+                    _targetVelocity.Y = BounceImpulse;
+                    break;
+                }
+            }
+        }
     }
 }
