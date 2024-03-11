@@ -18,6 +18,7 @@ public partial class Main : Node
 		_player = GetNode<Player>("Player");
 		
 		_mobTimer.Timeout += OnMobTimerTimeout;
+		_player.Hit += OnPlayerHit;
 	}
 
 	private void OnMobTimerTimeout()
@@ -34,5 +35,10 @@ public partial class Main : Node
 
 	public override void _Process(double delta)
 	{
+	}
+	
+	private void OnPlayerHit()
+	{
+		_mobTimer.Stop();
 	}
 }

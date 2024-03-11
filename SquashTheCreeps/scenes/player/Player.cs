@@ -1,8 +1,11 @@
 using Godot;
 using System;
+using System.Diagnostics.Tracing;
 
 public partial class Player : CharacterBody3D
 {
+    [Signal] public delegate void HitEventHandler();
+    
     [Export] public int Speed { get; set; } = 14;
     [Export] public int FallAcceleration { get; set; } = 75;
     [Export] public int JumpImpulse { get; set; } = 20;
@@ -11,10 +14,14 @@ public partial class Player : CharacterBody3D
     private Vector3 _targetVelocity = Vector3.Zero;
 
     private Node3D _pivot;
+    private Area3D _mobDetector;
     
     public override void _Ready()
     {
         _pivot = GetNode<Node3D>("Pivot");
+        _mobDetector = GetNode<Area3D>("MobDetector");
+        
+        _mobDetector.BodyEntered += OnBodyEnteredMobDetector;
     }
 
     public override void _PhysicsProcess(double delta)
@@ -72,5 +79,16 @@ public partial class Player : CharacterBody3D
                 }
             }
         }
+    }
+    
+    private void OnBodyEnteredMobDetector(Node3D body)
+    {
+        Die();
+    }
+
+    private void Die()
+    {
+        EmitSignal(SignalName.Hit);
+        QueueFree();
     }
 }
