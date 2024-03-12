@@ -4,21 +4,23 @@ using System;
 public partial class Main : Node
 {
 
-	[Export]
-	public PackedScene MobScene { get; set; }
+	[Export] public PackedScene MobScene { get; set; }
+	[Export] public Player Player { get; set; }
+	[Export] public ScoreLabel ScoreLabel { get; set; }
+	[Export] public ColorRect Retry { get; set; }
 
 	private Timer _mobTimer;
 	private PathFollow3D _mobSpawnLocation;
-	private Player _player;
 	
 	public override void _Ready()
 	{
 		_mobTimer = GetNode<Timer>("MobTimer");
 		_mobSpawnLocation = GetNode<PathFollow3D>("SpawnPath/SpawnLocation");
-		_player = GetNode<Player>("Player");
 		
 		_mobTimer.Timeout += OnMobTimerTimeout;
-		_player.Hit += OnPlayerHit;
+		Player.Hit += OnPlayerHit;
+		
+		Retry.Hide();
 	}
 
 	private void OnMobTimerTimeout()
@@ -27,18 +29,25 @@ public partial class Main : Node
 
 		_mobSpawnLocation.ProgressRatio = GD.Randf();
 
-		Vector3 playerPosition = _player.Position;
+		Vector3 playerPosition = Player.Position;
 		mob.Initialize(_mobSpawnLocation.Position, playerPosition);
+
+		mob.Squashed += ScoreLabel.OnMobSquashed;
 		
 		AddChild(mob);
 	}
 
-	public override void _Process(double delta)
+	public override void _UnhandledInput(InputEvent @event)
 	{
+		if (Retry.Visible && Input.IsActionPressed("ui_accept"))
+		{
+			GetTree().ReloadCurrentScene();
+		}
 	}
-	
+
 	private void OnPlayerHit()
 	{
 		_mobTimer.Stop();
+		Retry.Show();
 	}
 }
