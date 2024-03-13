@@ -10,15 +10,17 @@ public partial class Player : CharacterBody3D
     [Export] public int FallAcceleration { get; set; } = 75;
     [Export] public int JumpImpulse { get; set; } = 20;
     [Export] public int BounceImpulse { get; set; } = 16;
+    [Export] public AnimationPlayer AnimationPlayer { get; set; }
+    [Export] public Node3D Pivot { get; set; }
+
     
     private Vector3 _targetVelocity = Vector3.Zero;
 
-    private Node3D _pivot;
     private Area3D _mobDetector;
     
     public override void _Ready()
     {
-        _pivot = GetNode<Node3D>("Pivot");
+        Pivot = GetNode<Node3D>("Pivot");
         _mobDetector = GetNode<Area3D>("MobDetector");
         
         _mobDetector.BodyEntered += OnBodyEnteredMobDetector;
@@ -48,7 +50,12 @@ public partial class Player : CharacterBody3D
         if (direction != Vector3.Zero)
         {
             direction.Normalized();
-            _pivot.Basis = Basis.LookingAt(direction);
+            Pivot.Basis = Basis.LookingAt(direction);
+            AnimationPlayer.SpeedScale = 4;
+        }
+        else
+        {
+            AnimationPlayer.SpeedScale = 1;
         }
 
         _targetVelocity.X = direction.X * Speed;
@@ -79,6 +86,8 @@ public partial class Player : CharacterBody3D
                 }
             }
         }
+
+        Pivot.Rotation = new Vector3(Mathf.Pi / 6.0f * Velocity.Y / JumpImpulse, Pivot.Rotation.Y, Pivot.Rotation.Z);
     }
     
     private void OnBodyEnteredMobDetector(Node3D body)

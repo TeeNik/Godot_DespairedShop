@@ -10,6 +10,8 @@ public partial class Mob : CharacterBody3D
     [Export] 
     public int MaxSpeed { get; set; } = 15;
 
+    [Export] public AnimationPlayer AnimationPlayer { get; set; }
+
     private VisibleOnScreenEnabler3D _visibleOnScreenEnabler;
 
     public void Initialize(Vector3 startPosition, Vector3 playerPosition)
@@ -20,6 +22,8 @@ public partial class Mob : CharacterBody3D
         int speed = GD.RandRange(MinSpeed, MaxSpeed);
         Velocity = Vector3.Forward * speed;
         Velocity = Velocity.Rotated(Vector3.Up, Rotation.Y);
+
+        AnimationPlayer.SpeedScale = (float)speed / MinSpeed;
     }
 
     public override void _Ready()

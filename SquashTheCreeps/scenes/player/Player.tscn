@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dcfy5wyodunsk"]
+[gd_scene load_steps=7 format=3 uid="uid://dcfy5wyodunsk"]
 
 [ext_resource type="Script" path="res://scenes/player/Player.cs" id="1_o4nyd"]
 [ext_resource type="PackedScene" uid="uid://c3hyht1jhaega" path="res://art/player.glb" id="1_tgfi8"]
@@ -10,14 +10,51 @@ radius = 0.8
 height = 0.30598
 radius = 1.00925
 
-[node name="Player" type="CharacterBody3D"]
+[sub_resource type="Animation" id="Animation_al1s8"]
+resource_name = "float"
+length = 1.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Character:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.3, 0.7, 1.2),
+"transitions": PackedFloat32Array(0.435275, 2.07053, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.65, 0), Vector3(0, 0.35, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot/Character:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1, 0.5, 1.2),
+"transitions": PackedFloat32Array(0.435275, 0.435275, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.139626, 0, 0), Vector3(-0.15708, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_aa4t2"]
+_data = {
+"float": SubResource("Animation_al1s8")
+}
+
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("AnimationPlayer", "Pivot")]
 collision_mask = 6
 script = ExtResource("1_o4nyd")
+AnimationPlayer = NodePath("AnimationPlayer")
+Pivot = NodePath("Pivot")
 
 [node name="Pivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.224063, 0)
 
 [node name="Character" parent="Pivot" instance=ExtResource("1_tgfi8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.47775, 0)
+transform = Transform3D(1, 0, 0, 0, 0.999797, 0.0201129, 0, -0.0201129, 0.999797, 0, 0.65, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.815831, 0)
@@ -32,3 +69,9 @@ monitorable = false
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MobDetector"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0306997, -0.104239, -0.0306998)
 shape = SubResource("CylinderShape3D_o25sx")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_aa4t2")
+}
+autoplay = "float"

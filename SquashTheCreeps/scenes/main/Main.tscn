@@ -20,7 +20,7 @@ material = SubResource("StandardMaterial3D_o2bt6")
 
 [sub_resource type="Curve3D" id="Curve3D_wcjrp"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -12.9959, 0, -14.012, 0, 0, 0, 0, 0, 0, 13.0224, 0, -14.012, 0, 0, 0, 0, 0, 0, 13.0224, 0, 15.1254, 0, 0, 0, 0, 0, 0, -12.9198, 0, 15.0493, 0, 0, 0, 0, 0, 0, -12.9959, 0, -14.012),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -13, 0, -14, 0, 0, 0, 0, 0, 0, 13, 0, -14, 0, 0, 0, 0, 0, 0, 13, 0, 15, 0, 0, 0, 0, 0, 0, -13, 0, 15, 0, 0, 0, 0, 0, 0, -13, 0, -14),
 "tilts": PackedFloat32Array(0, 0, 0, 0, 0)
 }
 point_count = 5
@@ -83,7 +83,7 @@ mesh = SubResource("CylinderMesh_btyjk")
 curve = SubResource("Curve3D_wcjrp")
 
 [node name="SpawnLocation" type="PathFollow3D" parent="SpawnPath"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -12.9959, 0, -14.012)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -13, 0, -14)
 
 [node name="MobTimer" type="Timer" parent="."]
 wait_time = 0.5
