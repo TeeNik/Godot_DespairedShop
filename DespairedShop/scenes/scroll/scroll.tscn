@@ -1,0 +1,46 @@
+[gd_scene load_steps=3 format=3 uid="uid://cwqd3yx4x1wjq"]
+
+[ext_resource type="Script" path="res://scenes/scroll/Scroll.cs" id="1_qtfnk"]
+[ext_resource type="Texture2D" uid="uid://cs6lltmnl857p" path="res://art/scroll/scroll_11.png" id="2_hq3vc"]
+
+[node name="Scroll" type="Control" node_paths=PackedStringArray("_lines")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 9.0
+offset_top = 31.0
+offset_right = 9.0
+offset_bottom = 31.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qtfnk")
+_lines = NodePath("Background/TextureRect/Lines")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.215686, 0.215686, 0.215686, 1)
+
+[node name="TextureRect" type="TextureRect" parent="Background"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -392.0
+offset_top = -344.0
+offset_right = 392.0
+offset_bottom = 344.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 1.5708
+pivot_offset = Vector2(392, 344)
+texture = ExtResource("2_hq3vc")
+
+[node name="Lines" type="Node" parent="Background/TextureRect"]

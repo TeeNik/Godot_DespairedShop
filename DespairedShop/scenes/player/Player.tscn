@@ -1,19 +1,27 @@
 [gd_scene load_steps=8 format=3 uid="uid://d4f02tt7s1lxk"]
 
-[ext_resource type="Texture2D" uid="uid://ytxpxbfuilu7" path="res://art/playerGrey_up1.png" id="1_rare1"]
 [ext_resource type="Script" path="res://scenes/player/Player.cs" id="1_yspou"]
-[ext_resource type="Texture2D" uid="uid://c2cjs5ecth010" path="res://art/playerGrey_up2.png" id="2_100xp"]
-[ext_resource type="Texture2D" uid="uid://dxnim823ud8et" path="res://art/playerGrey_walk1.png" id="3_u60r7"]
-[ext_resource type="Texture2D" uid="uid://dwmdr4qru5sqm" path="res://art/playerGrey_walk2.png" id="4_v1k2u"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_qf65a"]
+load_path = "res://.godot/imported/playerGrey_up1.png-6bd114d0a6beac91f48e3a7314d44564.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_b2bdp"]
+load_path = "res://.godot/imported/playerGrey_up2.png-d6aba85f5f2675ebc7045efa7552ee79.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vu0le"]
+load_path = "res://.godot/imported/playerGrey_walk1.png-c4773fe7a7bf85d7ab732eb4458c2742.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_sxh83"]
+load_path = "res://.godot/imported/playerGrey_walk2.png-34d2d916366100182d08037c51884043.ctex"
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_tn775"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_rare1")
+"texture": SubResource("CompressedTexture2D_qf65a")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_100xp")
+"texture": SubResource("CompressedTexture2D_b2bdp")
 }],
 "loop": true,
 "name": &"up",
@@ -21,10 +29,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_u60r7")
+"texture": SubResource("CompressedTexture2D_vu0le")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_v1k2u")
+"texture": SubResource("CompressedTexture2D_sxh83")
 }],
 "loop": true,
 "name": &"walk",

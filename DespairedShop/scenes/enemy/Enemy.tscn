@@ -1,21 +1,33 @@
 [gd_scene load_steps=10 format=3 uid="uid://cngvd13k3qpvr"]
 
 [ext_resource type="Script" path="res://scenes/enemy/Enemy.cs" id="1_3ix2c"]
-[ext_resource type="Texture2D" uid="uid://vhubiejgnk" path="res://art/enemyFlyingAlt_1.png" id="2_v82mv"]
-[ext_resource type="Texture2D" uid="uid://dn5ntec1fyegu" path="res://art/enemyFlyingAlt_2.png" id="3_4fnf3"]
-[ext_resource type="Texture2D" uid="uid://cjitscv03v3dv" path="res://art/enemySwimming_1.png" id="4_wkop4"]
-[ext_resource type="Texture2D" uid="uid://dk0gt6we2ympp" path="res://art/enemySwimming_2.png" id="5_ct66s"]
-[ext_resource type="Texture2D" uid="uid://c5bvjq34gdh74" path="res://art/enemyWalking_1.png" id="6_7vg68"]
-[ext_resource type="Texture2D" uid="uid://dmofqyl305w6a" path="res://art/enemyWalking_2.png" id="7_0ds5b"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_01pvf"]
+load_path = "res://.godot/imported/enemyFlyingAlt_1.png-559f599b16c69b112c1b53f6332e9489.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_atujq"]
+load_path = "res://.godot/imported/enemyFlyingAlt_2.png-31dc7310eda6e1b721224f3cd932c076.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_dn1tb"]
+load_path = "res://.godot/imported/enemySwimming_1.png-dd0e11759dc3d624c8a704f6e98a3d80.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_0qojl"]
+load_path = "res://.godot/imported/enemySwimming_2.png-4c0cbc0732264c4ea3290340bd4a0a62.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_txk81"]
+load_path = "res://.godot/imported/enemyWalking_1.png-5af6eedbe61b701677d490ffdc1e6471.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ih88j"]
+load_path = "res://.godot/imported/enemyWalking_2.png-67c480ed60c35e95f5acb0436246b935.ctex"
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_uuw1v"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_v82mv")
+"texture": SubResource("CompressedTexture2D_01pvf")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_4fnf3")
+"texture": SubResource("CompressedTexture2D_atujq")
 }],
 "loop": true,
 "name": &"fly",
@@ -23,10 +35,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_wkop4")
+"texture": SubResource("CompressedTexture2D_dn1tb")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_ct66s")
+"texture": SubResource("CompressedTexture2D_0qojl")
 }],
 "loop": true,
 "name": &"swim",
@@ -34,10 +46,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("6_7vg68")
+"texture": SubResource("CompressedTexture2D_txk81")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_0ds5b")
+"texture": SubResource("CompressedTexture2D_ih88j")
 }],
 "loop": true,
 "name": &"walking",
