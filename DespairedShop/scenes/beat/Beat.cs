@@ -3,7 +3,7 @@ using System;
 
 public partial class Beat : Control
 {
-	private Timer _destroyTimer;
+	[Export] private Timer _destroyTimer;
 	private Vector2 _fromPos;
 	private Vector2 _toPos;
 	private float _currentTime = 0.0f;
@@ -11,8 +11,6 @@ public partial class Beat : Control
 	
 	public override void _Ready()
 	{
-		_destroyTimer = GetNode<Timer>("DestroyTimer");
-		
 		_destroyTimer.Timeout += OnDestroyTimerTimeout;
 	}
 	
@@ -27,8 +25,8 @@ public partial class Beat : Control
 	public override void _Process(double delta)
 	{
 		_currentTime += (float)delta;
-		Vector2 newPos = GlobalPosition.Lerp(_toPos, (float)delta / _lifeTime);
-		SetGlobalPosition(newPos);
+		Vector2 newPos = _fromPos.Lerp(_toPos, _currentTime / _lifeTime);
+		SetPosition(newPos);
 	}
 
 	private void OnDestroyTimerTimeout()

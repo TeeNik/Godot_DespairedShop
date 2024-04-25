@@ -3,22 +3,16 @@
 [ext_resource type="Script" path="res://scenes/enemy/Enemy.cs" id="1_3ix2c"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_01pvf"]
-load_path = "res://.godot/imported/enemyFlyingAlt_1.png-559f599b16c69b112c1b53f6332e9489.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_atujq"]
-load_path = "res://.godot/imported/enemyFlyingAlt_2.png-31dc7310eda6e1b721224f3cd932c076.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_dn1tb"]
-load_path = "res://.godot/imported/enemySwimming_1.png-dd0e11759dc3d624c8a704f6e98a3d80.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_0qojl"]
-load_path = "res://.godot/imported/enemySwimming_2.png-4c0cbc0732264c4ea3290340bd4a0a62.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_txk81"]
-load_path = "res://.godot/imported/enemyWalking_1.png-5af6eedbe61b701677d490ffdc1e6471.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ih88j"]
-load_path = "res://.godot/imported/enemyWalking_2.png-67c480ed60c35e95f5acb0436246b935.ctex"
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_uuw1v"]
 animations = [{

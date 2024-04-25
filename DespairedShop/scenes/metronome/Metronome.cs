@@ -7,17 +7,17 @@ public partial class Metronome : Control
 	[Export] public float BeatLifetime = 3;
 	[Export] public PackedScene BeatScene;
 	
+	[Export] private Control _beatsParent;
+	[Export] private Control _beatSpawnPoint;
+	[Export] private Control _beatTargetPoint;
+	
 	private Timer _beatTimer;
 	private float _beatPeriod;
-	private Control _beatSpawmPoint;
-	private Control _beatTargetPoint;
 	
 	public override void _Ready()
 	{
 		_beatPeriod = 60.0f / BPM;
 		_beatTimer = GetNode<Timer>("BeatTimer");
-		_beatSpawmPoint = GetNode<Control>("BeatSpawnPoint");
-		_beatTargetPoint = GetNode<Control>("BeatTargetPoint");
 		
 		_beatTimer.Timeout += OnBeatTimerTimeout;
 		_beatTimer.Start(_beatPeriod);
@@ -27,7 +27,9 @@ public partial class Metronome : Control
 	{
 		GD.Print("Beat");
 		Beat beat = BeatScene.Instantiate<Beat>();
-		beat.InitBeat(BeatLifetime, _beatSpawmPoint.GlobalPosition, _beatTargetPoint.GlobalPosition);
+		_beatsParent.AddChild(beat);
+		beat.SetPosition(_beatSpawnPoint.Position);
+		beat.InitBeat(BeatLifetime, _beatSpawnPoint.Position, _beatTargetPoint.Position);
 	}
 
 	public override void _Process(double delta)

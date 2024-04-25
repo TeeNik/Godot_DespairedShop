@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scenes/metronome/Metronome.cs" id="1_brq0c"]
 [ext_resource type="PackedScene" uid="uid://dabxll3jlrwfb" path="res://scenes/beat/Beat.tscn" id="2_6nq68"]
 
-[node name="Metronome" type="Control"]
+[node name="Metronome" type="Control" node_paths=PackedStringArray("_beatsParent", "_beatSpawnPoint", "_beatTargetPoint")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,6 +12,9 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_brq0c")
 BeatScene = ExtResource("2_6nq68")
+_beatsParent = NodePath("ColorRect")
+_beatSpawnPoint = NodePath("ColorRect/BeatSpawnPoint")
+_beatTargetPoint = NodePath("ColorRect/BeatTargetPoint")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -26,6 +29,7 @@ offset_right = 192.0
 offset_bottom = -64.0
 grow_horizontal = 2
 grow_vertical = 0
+pivot_offset = Vector2(192, 4)
 
 [node name="ColorRect2" type="ColorRect" parent="ColorRect"]
 layout_mode = 1
@@ -49,21 +53,8 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -6.0
-offset_top = -20.0
-offset_bottom = 20.0
 grow_horizontal = 0
 grow_vertical = 2
-
-[node name="Beat" parent="ColorRect/BeatSpawnPoint" instance=ExtResource("2_6nq68")]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_right = 0.0
-offset_bottom = 0.0
 
 [node name="BeatTargetPoint" type="Control" parent="ColorRect"]
 layout_mode = 1
@@ -72,10 +63,6 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -3.0
-offset_top = -20.0
-offset_right = 3.0
-offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
