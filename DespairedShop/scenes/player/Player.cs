@@ -11,17 +11,15 @@ public partial class Player : Area2D
 
 	private Vector2 _screenSize;
 	private CollisionShape2D _collisionShape2D;
-	private AnimatedSprite2D _animatedSprite2D;
 	
 	public override void _Ready()
 	{
 		_screenSize = GetViewportRect().Size;
 		BodyEntered += OnBodyEntered;
 		
-		_animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		_collisionShape2D = GetNode<CollisionShape2D>("CollisionShape2D");
 		
-		Hide();
+		//Hide();
 	}
 
 	public void Start(Vector2 position)
@@ -55,27 +53,11 @@ public partial class Player : Area2D
 		if (velocity.Length() > 0)
 		{
 			velocity = velocity.Normalized() * Speed;
-			_animatedSprite2D.Play();
-		}
-		else
-		{
-			_animatedSprite2D.Stop();
 		}
 
 		Position += velocity * (float)delta;
 		Position = new Vector2(Mathf.Clamp(Position.X, 0, _screenSize.X), Mathf.Clamp(Position.Y, 0, _screenSize.Y));
 
-		if (velocity.X != 0)
-		{
-			_animatedSprite2D.Animation = "walk";
-			_animatedSprite2D.FlipV = false;
-			_animatedSprite2D.FlipH = velocity.X < 0;
-		}
-		else if (velocity.Y != 0)
-		{
-			_animatedSprite2D.Animation = "up";
-			_animatedSprite2D.FlipV = velocity.Y > 0;
-		}
 	}
 	
 	private void OnBodyEntered(Node2D body)
