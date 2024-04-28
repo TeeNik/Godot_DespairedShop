@@ -16,3 +16,4 @@ position = Vector2(576, 320)
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Metronome" parent="CanvasLayer" instance=ExtResource("2_4naq7")]
+_bpm = 65
