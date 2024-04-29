@@ -78,6 +78,7 @@ public partial class Player : Area2D
 		if (@event is InputEventMouseButton && @event.IsPressed())
 		{
 			Metronome.Get().IsHitBeat();
+			
 			//string Text = Metronome.Get().IsHitBeat() ? "Hit" : "Miss";
 			//GD.Print(Text);
 		}
