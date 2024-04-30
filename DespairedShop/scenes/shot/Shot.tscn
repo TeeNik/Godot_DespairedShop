@@ -8,8 +8,9 @@ radius = 12.0
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_d3dvk"]
 load_path = "res://.godot/imported/circle.png-ade0f7a7959c3d18adf446ea83f038a1.ctex"
 
-[node name="Shot" type="Area2D"]
+[node name="Shot" type="Area2D" node_paths=PackedStringArray("_returnTimer")]
 script = ExtResource("1_4seds")
+_returnTimer = NodePath("ReturnTimer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(0.5, 0.5)
@@ -19,3 +20,5 @@ shape = SubResource("CircleShape2D_5dpub")
 modulate = Color(0, 0.760784, 0.662745, 1)
 scale = Vector2(0.015, 0.015)
 texture = SubResource("CompressedTexture2D_d3dvk")
+
+[node name="ReturnTimer" type="Timer" parent="."]

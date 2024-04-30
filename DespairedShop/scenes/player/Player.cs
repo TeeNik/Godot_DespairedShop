@@ -14,8 +14,8 @@ public partial class Player : Area2D
 	private CollisionShape2D _collisionShape2D;
 	
 	private Array<Node> _shotSlots = new ();
-	private Array<Node2D> _shots = new();
-	
+	private Array<Shot> _shots = new();
+
 	public override void _Ready()
 	{
 		_screenSize = GetViewportRect().Size;
@@ -26,9 +26,9 @@ public partial class Player : Area2D
 		_shotSlots = _pivot.GetChildren();
 		foreach (var slot in _shotSlots)
 		{
-			Node2D shot = _shotScene.Instantiate<Node2D>();
+			Shot shot = _shotScene.Instantiate<Shot>();
+			shot.Init(slot);
 			_shots.Add(shot);
-			slot.AddChild(shot);
 		}
 		
 		//Hide();
@@ -77,7 +77,16 @@ public partial class Player : Area2D
 	{
 		if (@event is InputEventMouseButton && @event.IsPressed())
 		{
+			InputEventMouseButton mouseEvent = (InputEventMouseButton)@event;
+			
 			Metronome.Get().IsHitBeat();
+
+			var shot = GetFirstAvailableShot();
+			if (shot != null)
+			{
+				Vector2 dir = (mouseEvent.Position - shot.Position).Normalized();
+				shot.Shoot(mouseEvent.Position);
+			}
 			
 			//string Text = Metronome.Get().IsHitBeat() ? "Hit" : "Miss";
 			//GD.Print(Text);
@@ -89,5 +98,17 @@ public partial class Player : Area2D
 		Hide();
 		EmitSignal(SignalName.Hit);
 		_collisionShape2D.SetDeferred(CollisionShape2D.PropertyName.Disabled, true);
+	}
+
+	private Shot GetFirstAvailableShot()
+	{
+		foreach (var shot in _shots)
+		{
+			if (shot.IsAvailable())
+			{
+				return shot;
+			}
+		}
+		return null;
 	}
 }
