@@ -13,7 +13,7 @@ public partial class Main : Node
 	private Timer _scoreTimer;
 	private Timer _startTimer;
 	private Marker2D _startPosition;
-	private HUD _hud;
+	private oldHUD _hud;
 
 	private AudioStreamPlayer _music;
 	private AudioStreamPlayer _deathSound;
@@ -27,7 +27,7 @@ public partial class Main : Node
 		_scoreTimer = GetNode<Timer>("ScoreTimer");
 		_startTimer = GetNode<Timer>("StartTimer");
 		_startPosition = GetNode<Marker2D>("StartPosition");
-		_hud = GetNode<HUD>("HUD");
+		_hud = GetNode<oldHUD>("HUD");
 		_music = GetNode<AudioStreamPlayer>("Music");
 		_deathSound = GetNode<AudioStreamPlayer>("DeathSound");
 		

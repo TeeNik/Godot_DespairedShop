@@ -5,6 +5,11 @@
 
 [node name="Main" type="Node2D"]
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Metronome" parent="CanvasLayer" instance=ExtResource("2_4naq7")]
+_bpm = 65
+
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_right = 1920.0
 offset_bottom = 1080.0
@@ -12,8 +17,3 @@ color = Color(0.00392157, 0.0392157, 0.0823529, 1)
 
 [node name="Player" parent="." instance=ExtResource("3_s6736")]
 position = Vector2(576, 320)
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="Metronome" parent="CanvasLayer" instance=ExtResource("2_4naq7")]
-_bpm = 65
