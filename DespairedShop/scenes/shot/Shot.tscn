@@ -22,3 +22,4 @@ scale = Vector2(0.015, 0.015)
 texture = SubResource("CompressedTexture2D_d3dvk")
 
 [node name="ReturnTimer" type="Timer" parent="."]
+one_shot = true

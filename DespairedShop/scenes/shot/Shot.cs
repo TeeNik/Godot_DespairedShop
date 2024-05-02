@@ -34,7 +34,12 @@ public partial class Shot : Area2D
 
 	private void OnReturnTimerTimeout()
 	{
-		
+		var parent = GetParent();
+		parent.RemoveChild(this);
+		_velocity = Vector2.Zero;
+		_slot.AddChild(this);
+		Position = Vector2.Zero;
+		_isAvailable = true;
 	}
 
 	public void Shoot(Vector2 mousePos)
@@ -47,6 +52,8 @@ public partial class Shot : Area2D
 		Vector2 dir = (mousePos - worldPos).Normalized();
 		_velocity += dir * _throwSpeed;
 		_isAvailable = false;
+		
+		_returnTimer.Start(_returnTimeout);
 	}
 
 	public bool IsAvailable()
