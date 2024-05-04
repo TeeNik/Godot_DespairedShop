@@ -4,6 +4,7 @@ using Godot.Collections;
 public partial class Player : Area2D
 {
 	[Signal] public delegate void HitEventHandler();
+	[Signal] public delegate void ShootEventHandler(bool isHitBeat);
 	
 	[Export] private int _speed = 400;
 	[Export] private Node2D _pivot;
@@ -79,13 +80,12 @@ public partial class Player : Area2D
 		{
 			InputEventMouseButton mouseEvent = (InputEventMouseButton)@event;
 			
-			Metronome.Get().IsHitBeat();
-
+			bool isHitBeat = Metronome.Get().IsHitBeat();
 			var shot = GetFirstAvailableShot();
 			if (shot != null)
 			{
-				Vector2 dir = (mouseEvent.Position - shot.Position).Normalized();
 				shot.Shoot(mouseEvent.Position);
+				EmitSignal(SignalName.Shoot, isHitBeat);
 			}
 			
 			//string Text = Metronome.Get().IsHitBeat() ? "Hit" : "Miss";
