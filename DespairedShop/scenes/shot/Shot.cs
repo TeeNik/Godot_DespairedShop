@@ -4,7 +4,8 @@ using System;
 public partial class Shot : Area2D
 {
 	[Export] private Timer _returnTimer;
-	[Export] private int _returnTimeoutInBeats = 4;
+	[Export] private AnimationPlayer _animPlayer;
+	[Export] private float _returnTimeoutInBeats = 4;
 	[Export] private float _throwSpeed = 5.0f;
 	[Export] private float _returnSpeed = 5.0f;
 	
@@ -37,6 +38,7 @@ public partial class Shot : Area2D
 		var parent = GetParent();
 		parent.RemoveChild(this);
 		_velocity = Vector2.Zero;
+		_animPlayer.Play("Appear");
 		_slot.AddChild(this);
 		Position = Vector2.Zero;
 		_isAvailable = true;
@@ -51,6 +53,14 @@ public partial class Shot : Area2D
 		GlobalPosition = worldPos;
 		Vector2 dir = (mousePos - worldPos).Normalized();
 		_velocity += dir * _throwSpeed;
+		_isAvailable = false;
+		
+		_returnTimer.Start(_returnTimeout);
+	}
+
+	public void Dissolve()
+	{
+		_animPlayer.Play("Dissolve");
 		_isAvailable = false;
 		
 		_returnTimer.Start(_returnTimeout);

@@ -12,6 +12,7 @@ _hitBeatColor = Color(0.301961, 1, 0.490196, 0.313726)
 _missBeatColor = Color(1, 0.2, 0.219608, 0.313726)
 
 [node name="PlayerShootIndicator" type="TextureRect" parent="."]
+visible = false
 modulate = Color(0.301961, 1, 0.490196, 0.313726)
 anchors_preset = 15
 anchor_right = 1.0

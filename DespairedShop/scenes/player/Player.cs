@@ -84,7 +84,14 @@ public partial class Player : Area2D
 			var shot = GetFirstAvailableShot();
 			if (shot != null)
 			{
-				shot.Shoot(mouseEvent.Position);
+				if (isHitBeat)
+				{
+					shot.Shoot(mouseEvent.Position);
+				}
+				else
+				{
+					shot.Dissolve();
+				}
 				EmitSignal(SignalName.Shoot, isHitBeat);
 			}
 			
