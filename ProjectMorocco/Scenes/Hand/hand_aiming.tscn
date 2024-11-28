@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://hme613csld42"]
+
+[ext_resource type="PackedScene" uid="uid://djmkd43amduvu" path="res://Content/Models/hand_aiming.glb" id="1_nxh2w"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gig7y"]
+albedo_color = Color(0.184314, 0.341176, 0.639216, 1)
+
+[node name="hand_aiming" instance=ExtResource("1_nxh2w")]
+
+[node name="Skeleton3D" parent="Armature" index="0"]
+bones/3/rotation = Quaternion(0.0335586, -0.010596, 0.0222588, 0.999133)
+bones/6/rotation = Quaternion(0.0439208, -0.0411801, -0.0302778, 0.997727)
+bones/9/rotation = Quaternion(0.0155689, -0.0283299, 0.23215, 0.972143)
+bones/10/rotation = Quaternion(0.041283, -0.0125387, 0.69479, 0.717917)
+bones/11/rotation = Quaternion(0.102004, -0.0118642, 0.770545, 0.629059)
+bones/12/rotation = Quaternion(0.0754129, -0.151151, 0.0966734, 0.980877)
+bones/13/rotation = Quaternion(0.229719, 0.0518862, 0.782477, 0.576426)
+bones/14/rotation = Quaternion(0.199519, -0.0406889, 0.660085, 0.723067)
+bones/15/rotation = Quaternion(0.410862, 0.0918119, 0.0457231, 0.90591)
+
+[node name="Plane005" parent="Armature/Skeleton3D" index="0"]
+material_override = SubResource("StandardMaterial3D_gig7y")

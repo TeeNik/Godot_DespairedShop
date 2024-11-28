@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://crx6gunmh8jxm"]
+
+[ext_resource type="PackedScene" uid="uid://d21cgkfmctupo" path="res://Scenes/Hand/hand_aiming.glb" id="1_867bw"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2qlnj"]
+albedo_color = Color(0.329412, 0.439216, 0.768627, 1)
+emission = Color(0.294118, 0.294118, 0.294118, 1)
+
+[node name="hand_aiming" instance=ExtResource("1_867bw")]
+transform = Transform3D(0.003, 0, 0, 0, 0.003, 0, 0, 0, 0.003, 0, 0, 0)
+
+[node name="Object_5" parent="Sketchfab_model/5df76564efd54077992d90269b56b07b_fbx/Object_2/RootNode/HandToMaya_BASE_0" index="0"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+
+[node name="Skeleton3D" parent="Sketchfab_model/5df76564efd54077992d90269b56b07b_fbx/Object_2/RootNode/HandToMaya_BASE_0/Object_5" index="1"]
+bones/4/rotation = Quaternion(-2.7359e-15, 2.40996e-15, -0.488848, 0.872369)
+bones/6/rotation = Quaternion(-3.55335e-15, 8.51859e-22, 0.0188574, 0.999822)
+bones/8/rotation = Quaternion(-8.76066e-09, -1.32208e-08, -0.508142, 0.861273)
+bones/10/rotation = Quaternion(-1.16956e-17, -3.33283e-16, -0.0471391, 0.998888)
+bones/12/rotation = Quaternion(-0.0916273, 0.0787091, -0.396672, 0.909979)
+bones/13/rotation = Quaternion(-0.728165, 0.012658, -0.0119114, 0.685182)
+bones/14/rotation = Quaternion(-0.70144, 0.00730094, -0.00741787, 0.712652)
+bones/16/rotation = Quaternion(-0.192371, 0.027943, -0.359091, 0.912834)
+bones/17/rotation = Quaternion(-0.714524, 0.029443, -0.0287805, 0.698399)
+bones/18/position = Vector3(-6.81416e-05, 23.0641, -1.25272)
+bones/18/rotation = Quaternion(-0.736895, 0.0221862, -0.0203319, 0.675337)
+
+[node name="Object_8" parent="Sketchfab_model/5df76564efd54077992d90269b56b07b_fbx/Object_2/RootNode/HandToMaya_BASE_0/Object_5/Skeleton3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_2qlnj")

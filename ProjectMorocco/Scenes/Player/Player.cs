@@ -3,6 +3,7 @@ using System;
 
 public partial class Player : CharacterBody3D
 {
+    [ExportGroup("Movement")]
     [Export] public float Speed = 3.5f;
     [Export] public float JumpVelocity = 4.5f;
     
@@ -13,7 +14,17 @@ public partial class Player : CharacterBody3D
     [Export] public bool ContinuousJump = true;
     [Export] public float Sensivity = 0.003f;
     
+    [ExportGroup("Camera Bobing")]
     [Export] public bool CameraBobing = true;
+    [Export] public float BobFrequency = 2.0f;
+    [Export] public float BobAmplitude = 0.08f;
+
+    [ExportGroup("Dynamic FOV")]
+    [Export] public bool DynamicFOV = true;
+    [Export] public float StantingFOV = 80.0f;
+    [Export] public float RunningFOV = 85.0f;
+    
+    private float _bobTime = 0.0f;
 
     private static readonly float Gravity = (float)ProjectSettings.GetSetting("physics/3d/default_gravity").AsDouble();
 
@@ -50,11 +61,31 @@ public partial class Player : CharacterBody3D
         var inputDir = Input.GetVector("move_left", "move_right", "move_forward", "move_backward");
         ProcessMovement(delta, inputDir);
 
+        //camera bob
+        ProcessCameraBob(delta);
+        
+        //update FOV
+        ProcessFOV();
+    }
+
+    private void ProcessFOV()
+    {
+        if (DynamicFOV)
+        {
+            float alpha = Mathf.Clamp(Mathf.InverseLerp(0.0f, Speed, Velocity.Length()), 0.0f, 1.0f);
+            _camera.Fov = Mathf.Lerp(StantingFOV, RunningFOV, alpha);
+        }
+    }
+
+    private void ProcessCameraBob(double delta)
+    {
         if (CameraBobing)
         {
-            if (!inputDir.IsZeroApprox() && IsOnFloor())
+            if (IsOnFloor())
             {
-                
+                _bobTime += (float)delta * Velocity.Length();
+                Vector3 bobPos = new Vector3(Mathf.Cos(_bobTime * BobFrequency * 0.5f) * BobAmplitude, Mathf.Sin(_bobTime * BobFrequency) * BobAmplitude, 0);
+                _head.Position = bobPos;
             }
         }
     }
