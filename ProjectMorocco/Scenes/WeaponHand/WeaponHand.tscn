@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cc70n5yhepkp6"]
+
+[ext_resource type="PackedScene" uid="uid://crx6gunmh8jxm" path="res://Scenes/Hand/hand_aiming_2.tscn" id="1_w1cjv"]
+[ext_resource type="PackedScene" uid="uid://calp3di8jicjh" path="res://Scenes/Hand/HandWithPistol.tscn" id="2_te255"]
+
+[node name="WeaponHand" type="Node3D"]
+
+[node name="hand_aiming" parent="." instance=ExtResource("1_w1cjv")]
+transform = Transform3D(-1.50996e-10, 0.002, 0, -0.002, -1.50996e-10, 0, 0, 0, -0.002, 0, 0, 0)
+visible = false
+
+[node name="HandWithPistol" parent="." instance=ExtResource("2_te255")]
+transform = Transform3D(-1.09278e-08, 0, -0.25, 0, 0.25, 0, 0.25, 0, -1.09278e-08, 0.107412, 0, 4.6951e-09)

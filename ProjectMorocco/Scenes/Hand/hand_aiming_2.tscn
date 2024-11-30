@@ -26,5 +26,5 @@ bones/18/position = Vector3(-6.81416e-05, 23.0641, -1.25272)
 bones/18/rotation = Quaternion(-0.736895, 0.0221862, -0.0203319, 0.675337)
 
 [node name="Object_8" parent="Sketchfab_model/5df76564efd54077992d90269b56b07b_fbx/Object_2/RootNode/HandToMaya_BASE_0/Object_5/Skeleton3D" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+layers = 2
 material_override = SubResource("StandardMaterial3D_2qlnj")

@@ -1,19 +1,20 @@
-[gd_scene load_steps=6 format=3 uid="uid://b1seutbnscatr"]
+[gd_scene load_steps=7 format=3 uid="uid://b1seutbnscatr"]
 
 [ext_resource type="Script" path="res://Scenes/Player/Player.cs" id="1_77ihs"]
-[ext_resource type="PackedScene" uid="uid://hme613csld42" path="res://Scenes/Hand/hand_aiming.tscn" id="2_avfwa"]
-[ext_resource type="PackedScene" uid="uid://crx6gunmh8jxm" path="res://Scenes/Hand/hand_aiming_2.tscn" id="3_ny4u6"]
+[ext_resource type="PackedScene" uid="uid://bfl11p4vcg1te" path="res://Scenes/GlobalTarget/GlobalTargetComponent.tscn" id="2_gbjk0"]
+[ext_resource type="PackedScene" uid="uid://cc70n5yhepkp6" path="res://Scenes/WeaponHand/WeaponHand.tscn" id="2_q2v6i"]
+[ext_resource type="PackedScene" uid="uid://bldxw6x3k5xpj" path="res://Scenes/Weapon/Weapon.tscn" id="3_8ywx6"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_u7rqw"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_e0ybj"]
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("_head", "_camera")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.69015, 1.09853, 2.03677)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.68874, 1.10136, 2.03656)
 script = ExtResource("1_77ihs")
 Sensivity = 0.05
 _head = NodePath("Head")
-_camera = NodePath("Head/Camera3D")
+_camera = NodePath("Head/WorldCamera")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 visible = false
@@ -25,13 +26,36 @@ shape = SubResource("CapsuleShape3D_e0ybj")
 [node name="Head" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.606746, 0)
 
-[node name="Camera3D" type="Camera3D" parent="Head"]
+[node name="WorldCamera" type="Camera3D" parent="Head"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00397658, 0, -0.00105453)
-fov = 80.0
+cull_mask = 1
+fov = 40.0
 
-[node name="hand_aiming" parent="Head" instance=ExtResource("2_avfwa")]
-transform = Transform3D(-0.0756304, 0.494247, 2.16042e-08, 0, -2.18557e-08, 0.5, 0.494247, 0.0756304, 3.30591e-09, 0.249, -0.294, -0.199)
-visible = false
+[node name="GlobalTargetComponent" parent="Head/WorldCamera" instance=ExtResource("2_gbjk0")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 
-[node name="hand_aiming2" parent="Head" instance=ExtResource("3_ny4u6")]
-transform = Transform3D(-3.82137e-18, -8.74228e-11, -0.002, -0.002, 8.74228e-11, 0, -8.74228e-11, -0.002, 8.74228e-11, 0.271, -0.275, -0.371)
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Head"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="Head/SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+canvas_cull_mask = 4293918722
+size = Vector2i(1728, 972)
+render_target_update_mode = 4
+
+[node name="HandsCamera" type="Camera3D" parent="Head/SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.68476, 1.70811, 2.03551)
+cull_mask = 2
+fov = 40.0
+
+[node name="WeaponHand" parent="Head/SubViewportContainer/SubViewport/HandsCamera" instance=ExtResource("2_q2v6i")]
+transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, 0.438977, -0.455, -1.60395)
+
+[node name="Weapon" parent="Head/SubViewportContainer/SubViewport/HandsCamera/WeaponHand" instance=ExtResource("3_8ywx6")]
+transform = Transform3D(0.999268, 0, 0.0382657, 0, 1, 0, -0.0382657, 0, 0.999268, 0.350011, 0.0374475, 4.76837e-07)

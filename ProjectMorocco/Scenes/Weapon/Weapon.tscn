@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://bldxw6x3k5xpj"]
+
+[ext_resource type="Shader" path="res://Invert.gdshader" id="1_obm0x"]
+[ext_resource type="Texture2D" uid="uid://cerptqvi8kjxy" path="res://code.png" id="2_5gqh6"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_7gc00"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b25pq"]
+render_priority = 0
+shader = ExtResource("1_obm0x")
+shader_parameter/textureExample = ExtResource("2_5gqh6")
+
+[node name="Weapon" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.0160365, -0.159039, -0.144935, 0.000216954, 0.0998693, -0.279837, 0.0350944, 0.0720559, 0.0679587, 0, 0, 0)
+layers = 2
+mesh = SubResource("BoxMesh_7gc00")
+surface_material_override/0 = SubResource("ShaderMaterial_b25pq")

@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://calp3di8jicjh"]
+
+[ext_resource type="PackedScene" uid="uid://c26vdc4mgqxru" path="res://Content/hand_with_pistol.glb" id="1_72oi6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i20a4"]
+albedo_color = Color(0.14902, 0.14902, 0.14902, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vouji"]
+albedo_color = Color(0.301961, 0.345098, 0.807843, 1)
+
+[node name="HandWithPistol" instance=ExtResource("1_72oi6")]
+
+[node name="PM3D_Cylinder3D_3" parent="." index="0"]
+layers = 2
+surface_material_override/0 = SubResource("StandardMaterial3D_i20a4")
+
+[node name="Plane005" parent="." index="1"]
+layers = 2
+surface_material_override/0 = SubResource("StandardMaterial3D_vouji")
