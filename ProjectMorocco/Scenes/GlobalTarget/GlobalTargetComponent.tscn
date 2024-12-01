@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bfl11p4vcg1te"]
+
+[ext_resource type="Script" path="res://Scenes/GlobalTarget/GlobalTargetComponent.cs" id="1_idbpd"]
+
+[node name="GlobalTargetComponent" type="Node3D" node_paths=PackedStringArray("_rayCast")]
+script = ExtResource("1_idbpd")
+_rayCast = NodePath("RayCast3D")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+target_position = Vector3(0, -20, 0)
+debug_shape_custom_color = Color(0, 0.729412, 0.776471, 1)
