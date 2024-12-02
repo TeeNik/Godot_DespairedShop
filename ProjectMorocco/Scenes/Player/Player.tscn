@@ -9,12 +9,12 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_e0ybj"]
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("_head", "_camera")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("_head", "Camera")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.68874, 1.10136, 2.03656)
 script = ExtResource("1_77ihs")
 Sensivity = 0.05
 _head = NodePath("Head")
-_camera = NodePath("Head/WorldCamera")
+Camera = NodePath("Head/MainCamera")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 visible = false
@@ -26,12 +26,12 @@ shape = SubResource("CapsuleShape3D_e0ybj")
 [node name="Head" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.606746, 0)
 
-[node name="WorldCamera" type="Camera3D" parent="Head"]
+[node name="MainCamera" type="Camera3D" parent="Head"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00397658, 0, -0.00105453)
 cull_mask = 1
 fov = 40.0
 
-[node name="GlobalTargetComponent" parent="Head/WorldCamera" instance=ExtResource("2_gbjk0")]
+[node name="GlobalTargetComponent" parent="Head/MainCamera" instance=ExtResource("2_gbjk0")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="Head"]
@@ -46,7 +46,7 @@ stretch = true
 transparent_bg = true
 handle_input_locally = false
 canvas_cull_mask = 4293918722
-size = Vector2i(1728, 972)
+size = Vector2i(1152, 648)
 render_target_update_mode = 4
 
 [node name="HandsCamera" type="Camera3D" parent="Head/SubViewportContainer/SubViewport"]
@@ -54,8 +54,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.68476, 1.70811, 2.03551)
 cull_mask = 2
 fov = 40.0
 
-[node name="WeaponHand" parent="Head/SubViewportContainer/SubViewport/HandsCamera" instance=ExtResource("2_q2v6i")]
+[node name="WeaponHand" parent="Head/SubViewportContainer/SubViewport/HandsCamera" node_paths=PackedStringArray("_currentWeapon") instance=ExtResource("2_q2v6i")]
 transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, 0.438977, -0.455, -1.60395)
+_currentWeapon = NodePath("Weapon")
 
 [node name="Weapon" parent="Head/SubViewportContainer/SubViewport/HandsCamera/WeaponHand" instance=ExtResource("3_8ywx6")]
 transform = Transform3D(0.999268, 0, 0.0382657, 0, 1, 0, -0.0382657, 0, 0.999268, 0.350011, 0.0374475, 4.76837e-07)

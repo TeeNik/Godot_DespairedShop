@@ -23,7 +23,7 @@ public partial class GlobalTargetComponent : Node
 	public override void _PhysicsProcess(double delta)
 	{
 		var collider = _rayCast.GetCollider();
-		GD.Print(collider == null ? "" : collider.ToString());
+		//GD.Print(collider == null ? "" : collider.ToString());
 
 		if (collider != null)
 		{

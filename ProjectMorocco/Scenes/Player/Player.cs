@@ -31,7 +31,7 @@ public partial class Player : CharacterBody3D
     [Export] public bool GravityEnabled = true;
 
     [Export] private Node3D _head;
-    [Export] private Camera3D _camera;
+    [Export] public Camera3D Camera { get; private set; }
     
     public override void _Ready()
     {
@@ -73,7 +73,7 @@ public partial class Player : CharacterBody3D
         if (DynamicFOV)
         {
             float alpha = Mathf.Clamp(Mathf.InverseLerp(0.0f, Speed, Velocity.Length()), 0.0f, 1.0f);
-            _camera.Fov = Mathf.Lerp(StantingFOV, RunningFOV, alpha);
+            Camera.Fov = Mathf.Lerp(StantingFOV, RunningFOV, alpha);
         }
     }
 
@@ -83,6 +83,7 @@ public partial class Player : CharacterBody3D
         {
             if (IsOnFloor())
             {
+                //TODO fix for dash
                 _bobTime += (float)delta * Velocity.Length();
                 Vector3 bobPos = new Vector3(Mathf.Cos(_bobTime * BobFrequency * 0.5f) * BobAmplitude, Mathf.Sin(_bobTime * BobFrequency) * BobAmplitude, 0);
                 _head.Position = bobPos;
